@@ -6,7 +6,8 @@ This project is useless.
 you can find his/her commones on MusicCloud By his/her playlists and its songs。So you are a pussy。
 This Source is not to harm ,but make the world a better place. 
 示例：
-![Image text](https://raw.githubusercontent.com/perhamer/source_folder/master/music_cloud_demo.png?token=AI2W3MZX5LE47B5SSVYCSRS6UK2KY)
+
+![preview](https://static.perhamer.com/img/music_cloud_demo.png)
 
 # musicCloud获取用户评论
     由于数据量的问题，仅提供查询用户所有歌单及收藏的歌单下所有歌曲的评论
