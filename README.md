@@ -15,7 +15,7 @@ This Source is not to harm ,but make the world a better place.
 	需要下载chromeDriver.exe
 
 执行顺序
-
+    PC端打开目标网易云主页如 https://music.163.com/#/user/home?id=123123123，123123123就是目标的id
     1、playlist_by_user.py 输入用户ID查找用户创建的、收藏的歌单
     2、musics_by_playlist.py 获取上一步歌单下的所有歌曲
     3、comment_by_music.py 获取上一步歌曲下的所有评论并筛选
