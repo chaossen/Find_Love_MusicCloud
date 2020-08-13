@@ -4,7 +4,7 @@ import math
 import random
 import time
 from datetime import datetime
-
+import logging
 import requests
 from Crypto.Cipher import AES
 
@@ -53,7 +53,7 @@ def AES_encrypt(text, key, iv):
 
 
 def get_comment_count(music_id):
-    url = 'http://music.163.com/weapi/v1/resource/comments/R_SO_4_' + str(music_id) + '?csrf_token='
+    url = 'http://music.163.com/api/v1/resource/comments/R_SO_4_' + str(music_id) + '?csrf_token='
     param = get_encrypt_params(0, 1, 'true')
     data = {
         "params": param,
@@ -66,7 +66,7 @@ def get_comment_count(music_id):
 
 
 def get_comment_by_music_id_and_user_id(music_id, user_id):
-    url = 'http://music.163.com/weapi/v1/resource/comments/R_SO_4_' + str(music_id) + '?csrf_token='
+    url = 'http://music.163.com/api/v1/resource/comments/R_SO_4_' + str(music_id) + '?csrf_token='
     total = get_comment_count(music_id)
     pages = math.ceil(total / 20)
     i = 0
@@ -93,11 +93,13 @@ def get_comment_by_music_id_and_user_id(music_id, user_id):
                             comment['beReplied'][0]['content'] if is_reply == 1 else '',
                             comment['likedCount'],
                             datetime.fromtimestamp(comment['time'] / 1000))
+                logging.info(comment['content'])
                 sql.insert_comment(c)
         i += 1
         print('\r查询成功，歌曲：' + str(music_id) + ',共' + str(total) + '条评论，进度：' + str(i) + '/' + str(
             pages if pages < 100 else 100),
               end='')
+    logging.info(str(music_id)+"歌曲查找完毕成功")
 
 
 
@@ -106,7 +108,7 @@ def get_comment_by_user_musics(user_id):
     music_list = sql.get_musics_by_user(user_id)
     music_index = 0
     count = len(music_list)
-    print('获取成功，共' + str(count) + '首歌曲')
+    logging.info('获取成功，共' + str(count) + '首歌曲')
     for music in music_list:
         get_comment_by_music_id_and_user_id(music['music_id'], user_id)
         music_index += 1
@@ -114,7 +116,8 @@ def get_comment_by_user_musics(user_id):
         print()
 
 if __name__ == "__main__":
+    logging.basicConfig(filename="out.log", level=logging.INFO)
     start = time.time()
-    get_comment_by_user_musics(11111)
+    get_comment_by_user_musics(88574814)
     cost = (time.time() - start)
     print('耗时：' + str(cost) + '秒')
