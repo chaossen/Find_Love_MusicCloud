@@ -13,6 +13,7 @@ This Source is not to harm ,but make the world a better place.
     由于数据量的问题，仅提供查询用户所有歌单及收藏的歌单下所有歌曲的评论
     待优化：只查询用户注册时间之后的评论
 	需要下载chromeDriver.exe
+	http://chromedriver.storage.googleapis.com/index.html
 
 执行顺序
     PC端打开目标网易云主页如 https://music.163.com/#/user/home?id=123123123，123123123就是目标的id
